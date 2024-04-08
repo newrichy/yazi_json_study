@@ -11,7 +11,7 @@ namespace json {
 	class Json
 	{
 	public:
-		enum Type//ö�����е����ͽ��ж���
+		enum Type//枚举所有的类型进行定义
 		{
 			json_null = 0,
 			json_bool,
@@ -21,7 +21,7 @@ namespace json {
 			json_array,
 			json_object
 		};
-
+                //不同参数的构造函数
 		Json();
 		Json(bool value);
 		Json(int value);
@@ -30,24 +30,24 @@ namespace json {
 		Json(const string &value);
 		Json(Type type);
 		Json(const Json& other);
-
+                //基本类型的运算符重载
 		operator bool();
 		operator int();
 		operator double();
 		operator string();
-
+                //中括号和append的重载
 		Json& operator[](int index);
 		void append(const Json& other);
-
+		//key值查找的重载
 		Json& operator[](const char*key);
 		Json& operator[](const string&key);
-
+		//赋值=、判断==、判断！=的重载
 		void operator =(const Json& other);
 		bool operator ==(const Json& other);
 		bool operator !=(const Json& other);
-
+		//输出str（）的重载
 		string str() const;
-
+		
 		void copy(const Json& other);
 		void clear();
 
@@ -84,7 +84,7 @@ namespace json {
 
 
 	private:
-		union Value//���������������Խ�ʡ�ռ�
+		union Value//联合体声明，可以节省空间
 		{
 			bool m_bool;
 			int m_int;
